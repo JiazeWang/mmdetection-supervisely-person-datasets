@@ -127,8 +127,7 @@ def show_result(img, result, dataset='coco', score_thr=0.3, out_file=None):
     '''
 def show_result_new(img, result, dataset='coco', score_thr=0.3, out_file=None):
     img = mmcv.imread(img)
-    img_old = img 
-    class_names = get_classes(dataset)
+    img_old = img
     if isinstance(result, tuple):
         bbox_result, segm_result = result
     else:
@@ -142,6 +141,6 @@ def show_result_new(img, result, dataset='coco', score_thr=0.3, out_file=None):
         for i in inds:
             mask = maskUtils.decode(segms[i]).astype(np.bool)
             img[mask] = 0
-    img_res = img_old - img
+    img_res = img
     if out_file:
         cv2.imwrite(out_file,img_res)
