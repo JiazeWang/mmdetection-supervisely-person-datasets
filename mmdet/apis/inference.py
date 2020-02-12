@@ -152,6 +152,6 @@ def show_result_new(img, result, dataset='coco', score_thr=0.3, out_file=None):
     #img_res=plot_boxes(img.copy(),bboxes,labels,
     #                   class_names=class_names,
     #                   score_thr=score_thr)
-    img_res =  img 
+    img_res = img_old.astype(np.float32) - img.astype(np.float32)
     if out_file:
         cv2.imwrite(out_file,img_res)
