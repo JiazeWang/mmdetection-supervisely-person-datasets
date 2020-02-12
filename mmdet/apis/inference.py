@@ -138,11 +138,10 @@ def show_result_new(img, result, dataset='coco', score_thr=0.3, out_file=None):
     if segm_result is not None:
         segms = mmcv.concat_list(segm_result)
         inds = np.where(bboxes[:, -1] > score_thr)[0]
-        for i in range(len(img)):
-            if i not in inds:
-                color_mask = 0
-                #mask = maskUtils.decode(segms[i]).astype(np.bool)
-                img[mask] = color_mask
+        for i in inds:
+            color_mask = 0
+            mask = maskUtils.decode(segms[i]).astype(np.bool)
+            img[mask] = color_mask * 0.5
     # draw bounding boxes
     #labels = [
     #   np.full(bbox.shape[0], i, dtype=np.int32)
