@@ -127,6 +127,7 @@ def show_result(img, result, dataset='coco', score_thr=0.3, out_file=None):
     '''
 def show_result_new(img, result, dataset='coco', score_thr=0.3, out_file=None):
     img = mmcv.imread(img)
+    img_old = img 
     class_names = get_classes(dataset)
     if isinstance(result, tuple):
         bbox_result, segm_result = result
@@ -142,7 +143,7 @@ def show_result_new(img, result, dataset='coco', score_thr=0.3, out_file=None):
             color_mask = 0
             mask = maskUtils.decode(segms[i]).astype(np.bool)
             img[mask] = color_mask * 0.5
-    # draw bounding boxes
+    # draw bounding boxesimg
     #labels = [
     #   np.full(bbox.shape[0], i, dtype=np.int32)
     #   for i, bbox in enumerate(bbox_result)
@@ -151,6 +152,6 @@ def show_result_new(img, result, dataset='coco', score_thr=0.3, out_file=None):
     #img_res=plot_boxes(img.copy(),bboxes,labels,
     #                   class_names=class_names,
     #                   score_thr=score_thr)
-    img_res = img.copy()
+    img_res = img_old - img.copy() 
     if out_file:
         cv2.imwrite(out_file,img_res)
