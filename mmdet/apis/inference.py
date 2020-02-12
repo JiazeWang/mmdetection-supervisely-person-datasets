@@ -143,15 +143,6 @@ def show_result_new(img, result, dataset='coco', score_thr=0.3, out_file=None):
             color_mask = 0
             mask = maskUtils.decode(segms[i]).astype(np.bool)
             img[mask] = color_mask
-    # draw bounding boxesimg
-    #labels = [
-    #   np.full(bbox.shape[0], i, dtype=np.int32)
-    #   for i, bbox in enumerate(bbox_result)
-    #]
-    #labels = np.concatenate(labels)
-    #img_res=plot_boxes(img.copy(),bboxes,labels,
-    #                   class_names=class_names,
-    #                   score_thr=score_thr)
-    img_res = img_old.astype(np.float32) - img.astype(np.float32)
+    img_res = img - img_old
     if out_file:
         cv2.imwrite(out_file,img_res)
