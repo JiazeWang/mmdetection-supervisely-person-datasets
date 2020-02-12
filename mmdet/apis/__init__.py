@@ -4,5 +4,5 @@ from .inference import inference_detector, show_result
 
 __all__ = [
     'init_dist', 'get_root_logger', 'set_random_seed', 'train_detector',
-    'inference_detector', 'show_result'
+    'inference_detector', 'show_result', 'show_result_new'
 ]
