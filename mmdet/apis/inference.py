@@ -140,9 +140,8 @@ def show_result_new(img, result, dataset='coco', score_thr=0.3, out_file=None):
         segms = mmcv.concat_list(segm_result)
         inds = np.where(bboxes[:, -1] > score_thr)[0]
         for i in inds:
-            color_mask = 0
             mask = maskUtils.decode(segms[i]).astype(np.bool)
-            img[mask] = color_mask
-    img_res = img - img_old
+            img[mask] = 0
+    img_res = img_old - img
     if out_file:
         cv2.imwrite(out_file,img_res)
